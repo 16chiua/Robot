@@ -1,16 +1,19 @@
 from machine import Pin, PWM
 from time import sleep
 
-def start():
-    pwm.duty_u16(976)
+motors =[PWM(Pin(0)), PWM(Pin(1))]
+motors[0].freq(50)
+motors[1].freq(50)
+
+def start(motorNumber):
+    motors[motorNumber].duty_u16(976)
     
-def stop():
-    pwm.duty_u16(0)
+def stop(motorNumber):
+    motors[motorNumber].duty_u16(0)
 
 
-pwm = PWM(Pin(1))
-pwm.freq(50)
 
-start()
+
+start(0)
 sleep(1)
-stop()
+stop(0)
